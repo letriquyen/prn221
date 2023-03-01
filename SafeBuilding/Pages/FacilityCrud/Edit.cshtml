@@ -1,0 +1,44 @@
+﻿@page
+@model SafeBuilding.Pages.FacilityCrud.EditModel
+
+<h4>Facility</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Facility.Id" />
+            <div class="form-group">
+                <label asp-for="Facility.Item" class="control-label"></label>
+                <input asp-for="Facility.Item" class="form-control" />
+                <span asp-validation-for="Facility.Item" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facility.Quantity" class="control-label"></label>
+                <input asp-for="Facility.Quantity" class="form-control" />
+                <span asp-validation-for="Facility.Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facility.Status" class="control-label"></label>
+                <input asp-for="Facility.Status" class="form-control" />
+                <span asp-validation-for="Facility.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facility.FlatId" class="control-label"></label>
+                <select asp-for="Facility.FlatId" class="form-control" asp-items="ViewBag.FlatId"></select>
+                <span asp-validation-for="Facility.FlatId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/FacilityPage">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,61 @@
+﻿@page
+@model SafeBuilding.Pages.RentContractCrud.IndexModel
+@{
+    ViewData["Title"] = "Rent Contract page";
+}
+<p>
+    <a asp-page="./RentContractCrud/Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].Contract)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentContract[0].Flat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.RentContract) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flat.Id)
+            </td>
+            <td>
+                <a asp-page="./RentContractCrud/Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./RentContractCrud/Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
