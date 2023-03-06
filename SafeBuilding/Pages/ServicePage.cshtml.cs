@@ -17,18 +17,27 @@ namespace SafeBuilding.Pages.ServiceCrud
         {
             _context = context;
         }
+        public string CurrentFilter { get; set; }
 
-        public IList<Service> Service { get;set; } = default!;
+        public IList<Service> Service { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string searchString)
         {
             if (HttpContext.Session.GetString("Phone") == null)
             {
                 return RedirectToPage("Login");
-            } else
+            }
+            else
             if (_context.Services != null)
             {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    CurrentFilter = searchString;
+                    Service = await _context.Services.Where(s => s.Name.Contains(CurrentFilter)).ToListAsync();
+                } else
                 Service = await _context.Services.ToListAsync();
+
+
             }
             return Page();
         }

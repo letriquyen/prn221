@@ -1,6 +1,8 @@
 ﻿@page
 @model SafeBuilding.Pages.RentContractCrud.CreateModel
-
+@{
+    ViewData["Title"] = "Rent Contract page";
+}
 <h4>RentContract</h4>
 <hr />
 <div class="row">
@@ -24,7 +26,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="RentContract.Status" class="control-label"></label>
-                <input asp-for="RentContract.Status" class="form-control" />
+                <select asp-for="RentContract.Status">
+                    <option value="VALID" selected>VALID</option>
+                    <option value="INVALID">INVALID</option>
+                </select>
                 <span asp-validation-for="RentContract.Status" class="text-danger"></span>
             </div>
             <div class="form-group">

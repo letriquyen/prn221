@@ -6,6 +6,17 @@
 <p>
     <a asp-page="./ServiceCrud/Create">Create New</a>
 </p>
+
+<form asp-page="/ServicePage" method="get">  
+
+    <div class="form-actions no-color">  
+        <p>  
+            Find by Service name: <input type="text" name="SearchString" value="@Model.CurrentFilter" />  
+            <input type="submit" value="Search" class="btn btn-primary" /> ||  
+            <a asp-page="/ServicePage">Back to full List</a>  
+        </p>  
+    </div>  
+</form>
 <table class="table">
     <thead>
         <tr>
