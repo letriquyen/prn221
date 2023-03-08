@@ -17,10 +17,10 @@ namespace SafeBuilding.Pages.BuildingCrud
         {
             _context = context;
         }
-
+        public string CurrentFilter { get; set; }
         public IList<Building> Building { get;set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string searchString)
         {
             if (HttpContext.Session.GetString("Phone") == null)
             {
@@ -29,7 +29,13 @@ namespace SafeBuilding.Pages.BuildingCrud
             else
             if (_context.Buildings != null)
             {
-                Building = await _context.Buildings.ToListAsync();
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    CurrentFilter = searchString;
+                    Building = await _context.Buildings.Where(s => s.Name.Contains(CurrentFilter)).ToListAsync();
+                }
+                else
+                    Building = await _context.Buildings.ToListAsync();
             }
             return Page();
         }

@@ -35,8 +35,8 @@ namespace SafeBuilding.Pages.RentContractCrud
                 return NotFound();
             }
             RentContract = rentcontract;
-           ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-           ViewData["FlatId"] = new SelectList(_context.Flats, "Id", "Id");
+           ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Fullname");
+           ViewData["FlatId"] = new SelectList(_context.Flats, "Id", "RoomNumber");
             return Page();
         }
 

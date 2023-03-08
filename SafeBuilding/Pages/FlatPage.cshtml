@@ -46,10 +46,10 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Building.Id)
+                @Html.DisplayFor(modelItem => item.Building.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FlatType.Id)
+                @Html.DisplayFor(modelItem => item.FlatType.Name)
             </td>
             <td>
                 <a asp-page="./FlatCrud/Edit" asp-route-id="@item.Id">Edit</a> ||
