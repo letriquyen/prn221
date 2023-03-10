@@ -16,8 +16,10 @@ namespace SafeBuilding.Pages
         {
             _repository = repository;
         }
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            HttpContext.Session.Clear();
+            return Page();
         }
 
         public IActionResult OnPost()
