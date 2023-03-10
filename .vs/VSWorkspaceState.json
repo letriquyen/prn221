@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Repository",
+    "\\Repository\\Models",
+    "\\Repository\\Repository",
+    "\\SafeBuilding",
+    "\\SafeBuilding\\Pages",
+    "\\SafeBuilding\\Pages\\BuildingCrud"
+  ],
+  "SelectedNode": "\\SafeBuilding\\SafeBuilding.csproj",
+  "PreviewInSolutionExplorer": false
+}
