@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Repository.Models;
 
@@ -19,7 +20,7 @@ namespace SafeBuilding.Pages.RentContractCrud
         }
 
         public IList<RentContract> RentContract { get;set; } = default!;
-
+        public Building Building { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
             if (HttpContext.Session.GetString("Phone") == null)
@@ -31,9 +32,11 @@ namespace SafeBuilding.Pages.RentContractCrud
             {
                 RentContract = await _context.RentContracts
                 .Include(r => r.Customer)
-                .Include(r => r.Flat).ToListAsync();
+                .Include(r => r.Flat)
+                .Include(r => r.Flat.Building).ToListAsync();
             }
             return Page();
         }
+
     }
 }

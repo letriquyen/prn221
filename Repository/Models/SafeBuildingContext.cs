@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -32,19 +31,9 @@ namespace Repository.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(GetConnectionString());
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=(local);uid=sa;pwd=12345;database=SafeBuilding;TrustServerCertificate=True");
             }
-        }
-
-        private string GetConnectionString()
-        {
-            IConfiguration config = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", true, true)
-            .Build();
-            var strConn = config["ConnectionStrings:SafeBuildingDB"];
-
-            return strConn;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -318,6 +307,10 @@ namespace Repository.Models
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("flat_id");
+
+                entity.Property(e => e.StartDate)
+                    .HasColumnType("date")
+                    .HasColumnName("start_date");
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(255)

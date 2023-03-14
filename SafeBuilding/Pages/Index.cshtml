@@ -7,28 +7,53 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 <form method="post">
+                        <h3>Chart Form</h3>
+                        <div class="form-group">
+                            <label>Bill date:</label>
+                            <input asp-for="@Model.billDate" type="month" min="1999-12" max="2050-01" value="2010-01" placeholder="Enter bill date">
+                            <span asp-validation-for="@Model.billDate" class="text-danger"></span>
+                        </div>
 
-    <input asp-for="@Model.buildings[1].Name" type="text">
-    <input asp-for="@Model.contractStatistic[0]" type="text">
-    <input asp-for="@Model.contractStatistic[1]" type="text">
-    <input asp-for="@Model.contractStatistic[2]" type="text">
-    <input asp-for="@Model.contractStatistic[3]" type="text">
-    <input asp-for="@Model.contractStatistic[4]" type="text">
-    <input asp-for="@Model.contractStatistic[5]" type="text">
-    <input asp-for="@Model.contractStatistic[6]" type="text">
-    <input asp-for="@Model.contractStatistic[7]" type="text">
-    <input asp-for="@Model.contractStatistic[8]" type="text">
-    <input asp-for="@Model.contractStatistic[9]" type="text">
-    <input asp-for="@Model.contractStatistic[10]" type="text">
-    <input asp-for="@Model.contractStatistic[11]" type="text">
-    <input asp-for="@Model.contractStatistic[12]" type="text">
+                        <div class="form-group">
+                            <label>Flats of building</label>
+                            <select>
+                                @foreach (var item in Model.buildings)
+        {
+                                <option asp-for="@item.Id">@item.Name</option>
+        }
+                            </select>
+                        </div>
+                         <div class="form-group">
+                             <label>Contract Year</label>
+                            <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" placeholder="Enter year">
+                            <span asp-validation-for="@Model.contractYear" class="text-danger"></span>
+                        </div> 
+                        <button class="submit" value="Chart">OK</button>
+                    </form>
+
+<form method="post">
+
+    <input asp-for="@Model.buildings[1].Name" type="hidden">
+    <input id="totalContracts" asp-for="@Model.contractStatistic[0]" type="hidden">
+    <input id="January" asp-for="@Model.contractStatistic[1]" type="hidden">
+    <input id="Febuary" asp-for="@Model.contractStatistic[2]" type="hidden">
+    <input id="March" asp-for="@Model.contractStatistic[3]" type="hidden">
+    <input id="April" asp-for="@Model.contractStatistic[4]" type="hidden">
+    <input id="May" asp-for="@Model.contractStatistic[5]" type="hidden">
+    <input id="June" asp-for="@Model.contractStatistic[6]" type="hidden">
+    <input id="July" asp-for="@Model.contractStatistic[7]" type="hidden">
+    <input id="August" asp-for="@Model.contractStatistic[8]" type="hidden">
+    <input id="September" asp-for="@Model.contractStatistic[9]" type="hidden">
+    <input id="October" asp-for="@Model.contractStatistic[10]" type="hidden">
+    <input id="November" asp-for="@Model.contractStatistic[11]" type="hidden">
+    <input id="December" asp-for="@Model.contractStatistic[12]" type="hidden">
     
     <input id="Available" asp-for="@Model.flatStatistic["AVAILABLE"]" type="hidden">
     <input id="Pending" asp-for="@Model.flatStatistic["PENDING"]" type="hidden">
     <input id="Unavailable" asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="hidden">
 
-    <input asp-for="@Model.billStatistic["UNPAID"]" type="text">
-    <input asp-for="@Model.billStatistic["PAID"]" type="text">
+    <input asp-for="@Model.billStatistic["UNPAID"]" type="hidden">
+    <input asp-for="@Model.billStatistic["PAID"]" type="hidden">
 
     <input style="width:100%" id="TotalContract" type="hidden"  value="<%=dataValue.get(10)%>" readonly="readonly"/>
             <input style="width:100%" id="January" type="hidden"  value="<%=dataValue.get(11)%>" readonly="readonly"/>
@@ -144,7 +169,7 @@
         });
 
         var xBillValues = ["Paid", "Unpaid"];
-        var yBillValues = [document.getElementById("Paid").value,document.getElementById("Unpaid").value];
+        var yBillValues = [55,45];
         var barColorsBill = [
             "#b91d47",
             "#1e7145"
@@ -174,7 +199,7 @@
                 document.getElementById("July").value, document.getElementById("August").value,
                 document.getElementById("September").value, document.getElementById("October").value, 
             document.getElementById("November").value, document.getElementById("December").value];
-        var max = Number(100);
+        var max = Number(document.getElementById("totalContracts").value);
         new Chart("contractChart", {
             type: "line",
             data: {

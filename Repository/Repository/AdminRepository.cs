@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Repository
 {
-    public class AdminRepository: RepositoryBase<Admin>
+    public class AdminRepository:RepositoryBase<Admin>
     {
         public AdminRepository()
         {

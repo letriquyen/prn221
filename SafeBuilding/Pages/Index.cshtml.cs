@@ -7,14 +7,14 @@ namespace SafeBuilding.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        public int contractYear;
-        public String buildingId;
+        public int contractYear = 2010;
+        public string buildingId;
         public IList<Building> buildings { get; set; } = default!;
         public List<int> contractStatistic { get; set; }
 
         public Dictionary<string, int> flatStatistic { get; set; }
         public Dictionary<string, int> billStatistic { get; set; }
-
+        public DateOnly billDate {get; set;}
         SafeBuildingContext _context ;
 
         public IndexModel(ILogger<IndexModel> logger, SafeBuildingContext context)
@@ -38,10 +38,10 @@ namespace SafeBuilding.Pages
             }
             // !!!IMPORTANT: update expiryDate -> startDate
             List<RentContract> rentContracts = _context.RentContracts
-                .Where(rc => rc.ExpiryDate.Value.Year == contractYear).ToList();
+                .Where(rc => rc.StartDate.Value.Year == contractYear).ToList();
             foreach (RentContract rentContract in rentContracts)
             {
-                contracts[rentContract.ExpiryDate.Value.Month ] += 1;
+                contracts[rentContract.StartDate.Value.Month ] += 1;
             }
             contracts[0]=rentContracts.Count;
             if(buildingId == null || "".Equals(buildingId))
