@@ -1,10 +1,35 @@
 ﻿@page "/Index"
+@using Repository.Models;
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<form method="post" asp-asp-page-handler="UploadFile">
+    <input type = "file" name= "file" />
+    <hr/>
+    <button type ="submit" >Upload</button>
+</form>
+
+@if(Model.Invoices == null)
+{
+    
+}else
+@if (Model.Invoices.Count() > 0)
+{
+    <hr />
+    <table cellpadding="10" , cellspacing="10" , border="1">
+        @foreach (Invoice invoice in Model.Invoices)
+        {
+            <tr>
+                <td>@invoice.rent</td>
+                <td>@invoice.water</td>
+                <td>@invoice.electicity</td>
+                <td>@invoice.management</td>
+                <td>@invoice.parking</td>
+                <td>@invoice.email</td>
+            </tr>
+        }
+    </table>
+}

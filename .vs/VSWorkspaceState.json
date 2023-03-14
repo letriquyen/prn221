@@ -1,13 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Repository",
-    "\\Repository\\Models",
-    "\\Repository\\Repository",
-    "\\SafeBuilding",
-    "\\SafeBuilding\\Pages",
-    "\\SafeBuilding\\Pages\\BuildingCrud"
+    "\\SafeBuilding"
   ],
-  "SelectedNode": "\\SafeBuilding\\SafeBuilding.csproj",
+  "SelectedNode": "\\SafeBuilding\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
