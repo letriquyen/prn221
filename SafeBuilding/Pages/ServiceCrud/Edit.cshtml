@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Service page";
 }
-<h4>Service</h4>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<h4 >Service</h4>
 <hr />
-<div class="row">
+<div class="row" id="main-content">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -41,8 +44,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-page="/ServicePage">Back to List</a>
+<div class="back-button">
+    <a asp-page="/ServicePage" class="btn btn-dark">Back to List</a>
 </div>
 
 @section Scripts {
