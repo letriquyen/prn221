@@ -22,10 +22,11 @@
     <input asp-for="@Model.contractStatistic[10]" type="text">
     <input asp-for="@Model.contractStatistic[11]" type="text">
     <input asp-for="@Model.contractStatistic[12]" type="text">
+    
+    <input id="Available" asp-for="@Model.flatStatistic["AVAILABLE"]" type="hidden">
+    <input id="Pending" asp-for="@Model.flatStatistic["PENDING"]" type="hidden">
+    <input id="Unavailable" asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="hidden">
 
-    <input asp-for="@Model.flatStatistic["AVAILABLE"]" type="text">
-    <input asp-for="@Model.flatStatistic["PENDING"]" type="text">
-    <input asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="text">
     <input asp-for="@Model.billStatistic["UNPAID"]" type="text">
     <input asp-for="@Model.billStatistic["PAID"]" type="text">
 
@@ -104,7 +105,7 @@
         //});
 
         var xFlatValues = ["Available", "Pending", "Unavailable"];
-        var yFlatValues = [55, 49, 44];
+        var yFlatValues = [document.getElementById("Available").value,document.getElementById("Pending").value,document.getElementById("Unavailable").value];
         var barColorsFlat = [
             "#b91d47",
             "#00aba9",
