@@ -13,11 +13,12 @@
     <thead class="bg-primary">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FlatType[0].Description)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FlatType[0].Name)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlatType[0].Description)
+            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.FlatType[0].Status)
             </th>
@@ -28,11 +29,12 @@
 @foreach (var item in Model.FlatType) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>

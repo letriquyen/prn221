@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NuGet.Protocol.Core.Types;
 using Repository.Models;
 
 namespace SafeBuilding.Pages
@@ -7,7 +8,7 @@ namespace SafeBuilding.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        public int contractYear = 2010;
+        public int contractYear;
         public string buildingId;
         public IList<Building> buildings { get; set; } = default!;
         public List<int> contractStatistic { get; set; }
@@ -22,7 +23,7 @@ namespace SafeBuilding.Pages
             _logger = logger;
             _context = context;
         }
-
+      
         public async Task<IActionResult> OnGetAsync()
         {
             if(HttpContext.Session.GetString("Phone") == null)
@@ -30,7 +31,7 @@ namespace SafeBuilding.Pages
                 return RedirectToPage("Login");
             }
             buildings = _context.Buildings.ToList();
-
+            
             Dictionary<int, int> contracts = new Dictionary<int, int>();
             for (int i = 0; i <= 12; i++)
             {
@@ -159,7 +160,8 @@ namespace SafeBuilding.Pages
                 if (bill.Status.Equals("PAID"))
                 {
                     countPaid++;
-                } else
+                }
+                else
                 {
                     countUnpaid++;
                 }

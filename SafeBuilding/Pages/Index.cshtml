@@ -6,11 +6,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
-<form method="post">
+<form method="get">
                         <h3>Chart Form</h3>
                         <div class="form-group">
                             <label>Bill date:</label>
-                            <input asp-for="@Model.billDate" type="month" min="1999-12" max="2050-01" value="2010-01" placeholder="Enter bill date">
+                            <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="2010-01" placeholder="Enter bill date">
                             <span asp-validation-for="@Model.billDate" class="text-danger"></span>
                         </div>
 
