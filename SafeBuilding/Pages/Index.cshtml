@@ -1,10 +1,184 @@
 ﻿@page "/Index"
-@model IndexModel
+@model SafeBuilding.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+<form method="post">
+
+    <input asp-for="@Model.buildings[1].Name" type="text">
+    <input asp-for="@Model.contractStatistic[0]" type="text">
+    <input asp-for="@Model.contractStatistic[1]" type="text">
+    <input asp-for="@Model.contractStatistic[2]" type="text">
+    <input asp-for="@Model.contractStatistic[3]" type="text">
+    <input asp-for="@Model.contractStatistic[4]" type="text">
+    <input asp-for="@Model.contractStatistic[5]" type="text">
+    <input asp-for="@Model.contractStatistic[6]" type="text">
+    <input asp-for="@Model.contractStatistic[7]" type="text">
+    <input asp-for="@Model.contractStatistic[8]" type="text">
+    <input asp-for="@Model.contractStatistic[9]" type="text">
+    <input asp-for="@Model.contractStatistic[10]" type="text">
+    <input asp-for="@Model.contractStatistic[11]" type="text">
+    <input asp-for="@Model.contractStatistic[12]" type="text">
+
+    <input asp-for="@Model.flatStatistic["AVAILABLE"]" type="text">
+    <input asp-for="@Model.flatStatistic["PENDING"]" type="text">
+    <input asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="text">
+    <input asp-for="@Model.billStatistic["UNPAID"]" type="text">
+    <input asp-for="@Model.billStatistic["PAID"]" type="text">
+
+</form>
+@*<table class="table table-hover">
+    <thead class="bg-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.buildings[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.buildings[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.buildings[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.buildings[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.buildings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-page="./ServiceCrud/Edit" asp-route-id="@item.Id">Edit</a> ||
+                    <a asp-page="./ServiceCrud/Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Dashboard</h1>
+
+    <canvas id="flatChart" style="width:100%;max-width:600px;float: right"></canvas>
+    <canvas id="billChart" style="width:100%;max-width:600px; float: left;"></canvas>
+    <canvas id="contractChart" style="width:100%;max-width:1200px;float: left;margin: 100px auto;"></canvas>
+
+    <script>
+        //var xContractValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        //var yContractValues = [55, 49, 44, 24, 15];
+        //var barColorsContract = ["red", "green","blue","orange","brown"];
+
+        //new Chart("contractChart", {
+        //  type: "bar",
+        //  data: {
+        //    labels: xContractValues,
+        //    datasets: [{
+        //      backgroundColor: barColorsContract,
+        //      data: yContractValues
+        //    }]
+        //  },
+        //  options: {
+        //    legend: {display: false},
+        //    title: {
+        //      display: true,
+        //      text: "Contract"
+        //    }
+        //  }
+        //});
+
+        var xFlatValues = ["Available", "Pending", "Unavailable"];
+        var yFlatValues = [55, 49, 44];
+        var barColorsFlat = [
+            "#b91d47",
+            "#00aba9",
+            "#1e7145"
+        ];
+
+        new Chart("flatChart", {
+            type: "pie",
+            data: {
+                labels: xFlatValues,
+                datasets: [{
+                    backgroundColor: barColorsFlat,
+                    data: yFlatValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Flat"
+                }
+            }
+        });
+
+        var xBillValues = ["Paid", "Unpaid"];
+        var yBillValues = [55, 49];
+        var barColorsBill = [
+            "#b91d47",
+            "#1e7145"
+        ];
+
+        new Chart("billChart", {
+            type: "pie",
+            data: {
+                labels: xBillValues,
+                datasets: [{
+                    backgroundColor: barColorsBill,
+                    data: yBillValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Bill"
+                }
+            }
+        });
+
+        var xValues2 = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var yValues2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var max = Number(100);
+        new Chart("contractChart", {
+            type: "line",
+            data: {
+                labels: xValues2,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues2
+                }]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: "Contract signed in this year"
+                },
+                scales: {
+                    yAxes: [{ ticks: { min: 0, max: max } }]
+                }
+
+            }
+        });
+    </script>
 </div>
+
