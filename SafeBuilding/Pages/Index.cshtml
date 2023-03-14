@@ -30,6 +30,20 @@
     <input asp-for="@Model.billStatistic["UNPAID"]" type="text">
     <input asp-for="@Model.billStatistic["PAID"]" type="text">
 
+    <input style="width:100%" id="TotalContract" type="hidden"  value="<%=dataValue.get(10)%>" readonly="readonly"/>
+            <input style="width:100%" id="January" type="hidden"  value="<%=dataValue.get(11)%>" readonly="readonly"/>
+            <input style="width:100%" id="Febuary" type="hidden"  value="<%=dataValue.get(12)%>" readonly="readonly"/>
+            <input style="width:100%" id="March" type="hidden"  value="<%=dataValue.get(13)%>" readonly="readonly"/>
+            <input style="width:100%" id="April" type="hidden"  value="<%=dataValue.get(14)%>" readonly="readonly"/>
+            <input style="width:100%" id="May" type="hidden"  value="<%=dataValue.get(15)%>" readonly="readonly"/>
+            <input style="width:100%" id="June" type="hidden"  value="<%=dataValue.get(16)%>" readonly="readonly"/>
+            <input style="width:100%" id="July" type="hidden"  value="<%=dataValue.get(17)%>" readonly="readonly"/>
+            <input style="width:100%" id="August" type="hidden"  value="<%=dataValue.get(18)%>" readonly="readonly"/>
+            <input style="width:100%" id="September" type="hidden"  value="<%=dataValue.get(19)%>" readonly="readonly"/>
+            <input style="width:100%" id="October" type="hidden"  value="<%=dataValue.get(20)%>" readonly="readonly"/>
+            <input style="width:100%" id="November" type="hidden"  value="<%=dataValue.get(21)%>" readonly="readonly"/>
+            <input style="width:100%" id="December" type="hidden"  value="<%=dataValue.get(22)%>" readonly="readonly"/>
+
 </form>
 @*<table class="table table-hover">
     <thead class="bg-primary">
@@ -130,7 +144,7 @@
         });
 
         var xBillValues = ["Paid", "Unpaid"];
-        var yBillValues = [55, 49];
+        var yBillValues = [document.getElementById("Paid").value,document.getElementById("Unpaid").value];
         var barColorsBill = [
             "#b91d47",
             "#1e7145"
@@ -154,7 +168,12 @@
         });
 
         var xValues2 = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        var yValues2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var yValues2 = [document.getElementById("January").value, document.getElementById("Febuary").value,
+                document.getElementById("March").value, document.getElementById("April").value, 
+                document.getElementById("May").value, document.getElementById("June").value,
+                document.getElementById("July").value, document.getElementById("August").value,
+                document.getElementById("September").value, document.getElementById("October").value, 
+            document.getElementById("November").value, document.getElementById("December").value];
         var max = Number(100);
         new Chart("contractChart", {
             type: "line",
