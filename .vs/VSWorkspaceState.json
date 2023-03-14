@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SafeBuilding"
+    "\\SafeBuilding",
+    "\\SafeBuilding\\Pages"
   ],
-  "SelectedNode": "\\SafeBuilding\\appsettings.json",
+  "SelectedNode": "\\SafeBuilding\\Pages\\Index.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }
