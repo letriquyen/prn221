@@ -5,7 +5,7 @@
 }
 <h4>Customer</h4>
 <hr />
-<div class="row">
+<div class="row" id="main-content">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -66,8 +66,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-page="/CustomerPage">Back to List</a>
+<div class="back-button">
+    <a asp-page="/CustomerPage" class="btn btn-dark">Back to List</a>
 </div>
 
 @section Scripts {
