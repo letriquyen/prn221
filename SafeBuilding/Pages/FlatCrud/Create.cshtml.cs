@@ -36,7 +36,7 @@ namespace SafeBuilding.Pages.FlatCrud
             {
                 return Page();
             }
-
+          Flat.Id = Guid.NewGuid().ToString();
             _context.Flats.Add(Flat);
             await _context.SaveChangesAsync();
 

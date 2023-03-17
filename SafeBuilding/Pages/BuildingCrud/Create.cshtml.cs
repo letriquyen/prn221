@@ -34,6 +34,7 @@ namespace SafeBuilding.Pages.BuildingCrud
             {
                 return Page();
             }
+            Building.Id = Guid.NewGuid().ToString();
 
             _context.Buildings.Add(Building);
             await _context.SaveChangesAsync();

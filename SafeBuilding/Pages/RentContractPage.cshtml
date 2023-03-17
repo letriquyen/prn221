@@ -14,10 +14,11 @@
         <thead class="bg-primary">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.RentContract[0].Contract)
+                    @Html.HiddenFor(model => model.RentContract[0].Contract)
                 </th>
+               
                 <th>
-                    @Html.DisplayNameFor(model => model.RentContract[0].ExpiryDate)
+                    Duration
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.RentContract[0].Status)
@@ -39,10 +40,12 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Contract)
+                        @Html.HiddenFor(modelItem => item.Contract)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ExpiryDate)
+                        From @Html.DisplayFor(modelItem => item.ExpiryDate)
+                        <br>
+                        to @Html.DisplayFor(modelItem => item.ExpiryDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Status)
@@ -51,10 +54,10 @@
                         @Html.DisplayFor(modelItem => item.Value)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Customer.Id)
+                        @Html.DisplayFor(modelItem => item.Customer.Fullname)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Flat.Id)
+                        @Html.DisplayFor(modelItem => item.Flat.RoomNumber)
                     </td>
                     <td style="width:20%">
                         <a asp-page="./RentContractCrud/Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |

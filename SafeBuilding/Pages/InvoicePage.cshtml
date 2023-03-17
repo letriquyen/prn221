@@ -65,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
+                @Html.DisplayFor(modelItem => item.Customer.Fullname)
             </td>
             <td>
                 <a asp-page="./InvoiceCrud/Edit" asp-route-id="@item.Id">Edit</a> |

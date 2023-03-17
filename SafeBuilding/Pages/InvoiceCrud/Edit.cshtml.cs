@@ -66,7 +66,7 @@ namespace SafeBuilding.Pages.InvoiceCrud
                 }
             }
 
-            return RedirectToPage("./InvoicePage");
+            return RedirectToPage("/InvoicePage");
         }
 
         private bool InvoiceExists(int id)

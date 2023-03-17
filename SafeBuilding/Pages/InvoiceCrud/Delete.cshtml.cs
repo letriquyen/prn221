@@ -56,7 +56,7 @@ namespace SafeBuilding.Pages.InvoiceCrud
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./InvoicePage");
+            return RedirectToPage("/InvoicePage");
         }
     }
 }

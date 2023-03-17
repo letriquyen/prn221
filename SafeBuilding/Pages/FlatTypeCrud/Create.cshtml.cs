@@ -34,11 +34,11 @@ namespace SafeBuilding.Pages.FlatTypeCrud
             {
                 return Page();
             }
-
+          FlatType.Id = Guid.NewGuid().ToString();
             _context.FlatTypes.Add(FlatType);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./FlatTypePage");
+            return RedirectToPage("/FlatTypePage");
         }
     }
 }

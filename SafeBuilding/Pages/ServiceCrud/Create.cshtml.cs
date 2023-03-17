@@ -34,6 +34,7 @@ namespace SafeBuilding.Pages.ServiceCrud
             {
                 return Page();
             }
+          Service.Id = Guid.NewGuid().ToString();
 
             _context.Services.Add(Service);
             await _context.SaveChangesAsync();

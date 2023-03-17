@@ -35,6 +35,7 @@ namespace SafeBuilding.Pages.FacilityCrud
             {
                 return Page();
             }
+          Facility.Id = Guid.NewGuid().ToString();
 
             _context.Facilities.Add(Facility);
             await _context.SaveChangesAsync();

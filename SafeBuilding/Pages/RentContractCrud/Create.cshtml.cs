@@ -36,8 +36,9 @@ namespace SafeBuilding.Pages.RentContractCrud
             {
                 return Page();
             }
-
+          RentContract.Id = Guid.NewGuid().ToString();
             _context.RentContracts.Add(RentContract);
+            
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/RentContractPage");

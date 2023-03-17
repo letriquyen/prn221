@@ -34,7 +34,7 @@ namespace SafeBuilding.Pages.CustomerCrud
             {
                 return Page();
             }
-
+          Customer.Id = Guid.NewGuid().ToString();
             _context.Customers.Add(Customer);
             await _context.SaveChangesAsync();
 

@@ -39,7 +39,7 @@ namespace SafeBuilding.Pages.InvoiceCrud
             _context.Invoices.Add(Invoice);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./InvoicePage");
+            return RedirectToPage("/InvoicePage");
         }
     }
 }
