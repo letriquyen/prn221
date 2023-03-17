@@ -3,59 +3,66 @@
 @{
     ViewData["Title"] = "Flat page";
 }
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 <p>
-    <a asp-page="./FlatCrud/Create">Create New</a>
+    <a asp-page="./FlatCrud/Create" class="btn btn-success">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].Detail)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].RoomNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].Building)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Flat[0].FlatType)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Flat) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Detail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Building.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FlatType.Name)
-            </td>
-            <td>
-                <a asp-page="./FlatCrud/Edit" asp-route-id="@item.Id">Edit</a> ||
-                <a asp-page="./FlatCrud/Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div style="margin-bottom:60px">
+    <table class="table table-hover">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].Detail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].RoomNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].Building)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Flat[0].FlatType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Flat)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Detail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoomNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Building.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlatType.Id)
+                    </td>
+                    <td style="width:20%">
+                        <a asp-page="./FlatCrud/Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> ||
+                        <a asp-page="./FlatCrud/Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

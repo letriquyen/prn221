@@ -5,7 +5,7 @@
 }
 <h4>Service</h4>
 <hr />
-<div class="row">
+<div class="row" id="main-content">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -44,10 +44,12 @@
     </div>
 </div>
 
-<div>
-    <a asp-page="/ServicePage">Back to List</a>
+<div class="back-button">
+    <a asp-page="/ServicePage" class="btn btn-dark">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

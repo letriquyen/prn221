@@ -3,47 +3,42 @@
 @{
     ViewData["Title"] = "Building page";
 }
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 <p>
-    <a asp-page="./BuildingCrud/Create">Create New</a>
+    <a asp-page="./BuildingCrud/Create" class="btn btn-success">Create New</a>
 </p>
+<div style="margin-bottom:60px">
+    <table class="table table-hover">
+        <thead class="bg-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Building[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Building[0].Status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Building)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <a asp-page="./BuildingCrud/Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a> |
+                        <a asp-page="./BuildingCrud/Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<form asp-page="/BuildingPage" method="get">  
-
-    <div class="form-actions">  
-        <p>  
-            Find by Building name: <input type="text" name="SearchString" value="@Model.CurrentFilter" />  
-            <input type="submit" value="Search" class="btn btn-primary" /> ||  
-            <a asp-page="/BuildingPage">Back to full List</a>  
-        </p>  
-    </div>  
-</form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Building[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Building[0].Status)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Building) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-page="./BuildingCrud/Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./BuildingCrud/Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</div>
