@@ -1,6 +1,8 @@
 ﻿@page
 @model SafeBuilding.Pages.InvoiceCrud.IndexModel
-
+@{
+    ViewData["Title"] = "Invoice page";
+}
 <p>
     <a asp-page="./InvoiceCrud/Create">Create New</a>
 </p>
@@ -70,7 +72,7 @@
             <td>
                 <a asp-page="./InvoiceCrud/Edit" asp-route-id="@item.Id">Edit</a> |
                 
-                <a asp-page="./InvoiceCrud/Delete" asp-route-id="@item.Id">Delete</a>
+                @*<a asp-page="./InvoiceCrud/Delete" asp-route-id="@item.Id">Delete</a>*@
             </td>
         </tr>
 }
