@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Repository.Models;
+using Repository.Repository;
 
 namespace SafeBuilding.Pages.FlatCrud
 {
     public class IndexModel : PageModel
     {
         private readonly Repository.Models.SafeBuildingContext _context;
+        private readonly FlatTypeRepository flatType;
 
         public IndexModel(Repository.Models.SafeBuildingContext context)
         {

@@ -35,8 +35,8 @@ namespace SafeBuilding.Pages.FlatCrud
                 return NotFound();
             }
             Flat = flat;
-           ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Id");
-           ViewData["FlatTypeId"] = new SelectList(_context.FlatTypes, "Id", "Id");
+           ViewData["BuildingId"] = new SelectList(_context.Buildings, "Id", "Name");
+           ViewData["FlatTypeId"] = new SelectList(_context.FlatTypes, "Id", "Name");
             return Page();
         }
 

@@ -17,10 +17,10 @@ namespace SafeBuilding.Pages.CustomerCrud
         {
             _context = context;
         }
-
+        public string CurrentFilter { get; set; }
         public IList<Customer> Customer { get;set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(String searchString)
         {
             if (HttpContext.Session.GetString("Phone") == null)
             {
@@ -29,7 +29,14 @@ namespace SafeBuilding.Pages.CustomerCrud
             else
             if (_context.Customers != null)
             {
-                Customer = await _context.Customers.ToListAsync();
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    CurrentFilter = searchString;
+                    Customer = await _context.Customers.Where(s => s.Fullname.Contains(CurrentFilter)).ToListAsync();
+                }
+                else
+                    Customer = await _context.Customers.ToListAsync();
             }
             return Page();
         }

@@ -20,8 +20,8 @@ namespace SafeBuilding.Pages.RentContractCrud
 
         public IActionResult OnGet()
         {
-        ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id");
-        ViewData["FlatId"] = new SelectList(_context.Flats, "Id", "Id");
+        ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Fullname");
+        ViewData["FlatId"] = new SelectList(_context.Flats, "Id", "RoomNumber");
             return Page();
         }
 
