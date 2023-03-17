@@ -94,12 +94,12 @@ namespace SafeBuilding.Pages
                         smtp.Disconnect(true);
                         list.Add(new Invoice()
                         {
-                            rent = reader.GetValue(0).ToString(),
-                            water = reader.GetValue(1).ToString(),
-                            electicity = reader.GetValue(2).ToString(),
-                            management = reader.GetValue(3).ToString(),
-                            parking = reader.GetValue(4).ToString(),
-                            email = reader.GetValue(5).ToString()
+                            Rent = reader.GetValue(0).ToString(),
+                            Water = reader.GetValue(1).ToString(),
+                            Electricity = reader.GetValue(2).ToString(),
+                            Management = reader.GetValue(3).ToString(),
+                            Parking = reader.GetValue(4).ToString(),
+                            Email = reader.GetValue(5).ToString()
                         });
                     }
                 }

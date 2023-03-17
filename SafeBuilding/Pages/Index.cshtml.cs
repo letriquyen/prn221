@@ -19,6 +19,8 @@ namespace SafeBuilding.Pages
         public Dictionary<string, int> billStatistic { get; set; }
         [BindProperty]
         public DateTime billDate {get; set;}
+
+        public String invoiceDate { get; set;}
         SafeBuildingContext _context ;
 
         public IndexModel(ILogger<IndexModel> logger, SafeBuildingContext context)
@@ -140,7 +142,8 @@ namespace SafeBuilding.Pages
                 { "UNAVAILABLE", countUnavailable }
             };
             contractStatistic = contracts.Values.ToList();
-
+            billStatistic = dashboard.getInvoiceStatistics(billDate.Month, billDate.Year);
+            invoiceDate = billDate.Year + "-" + billDate.Month;
             return Page();
         }
     }
@@ -212,11 +215,11 @@ namespace SafeBuilding.Pages
 
         }
 
-        public Dictionary<string, int> getBillStatistics(int month, int year)
+        public Dictionary<string, int> getInvoiceStatistics(int month, int year)
         {
             int countPaid = 0, countUnpaid = 0;
-            /*List<Bill> bills = _context.Bills.Where(b => b.Date.Value.Month == month && b.Date.Value.Year == year).ToList();
-            foreach (Bill bill in bills)
+            List<Invoice> bills = _context.Invoices.Where(b => b.Date.Value.Month == month && b.Date.Value.Year == year).ToList();
+            foreach (Invoice bill in bills)
             {
                 if (bill.Status.Equals("PAID"))
                 {
@@ -226,7 +229,7 @@ namespace SafeBuilding.Pages
                 {
                     countUnpaid++;
                 }
-            }*/
+            }
             return new Dictionary<string, int>
             {
                 { "PAID", countPaid },

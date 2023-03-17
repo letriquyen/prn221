@@ -10,7 +10,14 @@
     <h3>Chart Form</h3>
     <div class="form-group">
         <label>Bill date:</label>
-        <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="2010-01" placeholder="Enter bill date">
+        @if (Model.billDate.Year == 1)
+        {
+            <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="2010-01" placeholder="Enter bill date">
+        }
+        else
+        {
+            <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="@Model.invoiceDate" placeholder="Enter bill date">
+        }
         <span asp-validation-for="@Model.billDate" class="text-danger"></span>
     </div>
 
@@ -25,7 +32,14 @@
     </div>
     <div class="form-group">
         <label>Contract Year</label>
-        <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" placeholder="Enter year">
+        @if (Model.contractYear == 0)
+        {
+            <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" value="2010" placeholder="Enter year">
+        }
+        else
+        {
+            <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" value="@Model.contractYear" placeholder="Enter year">
+        }
         <span asp-validation-for="@Model.contractYear" class="text-danger"></span>
     </div>
     <button class="submit" value="Chart">OK</button>
@@ -52,8 +66,8 @@
     <input id="Pending" asp-for="@Model.flatStatistic["PENDING"]" type="hidden">
     <input id="Unavailable" asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="hidden">
 
-    <input asp-for="@Model.billStatistic["UNPAID"]" type="hidden">
-    <input asp-for="@Model.billStatistic["PAID"]" type="hidden">
+    <input asp-for="@Model.billStatistic["UNPAID"]" type="hidden" id="Unpaid">
+    <input asp-for="@Model.billStatistic["PAID"]" type="hidden" id="Paid">
 
     <input style="width:100%" id="TotalContract" type="hidden" value="<%=dataValue.get(10)%>" readonly="readonly" />
     <input style="width:100%" id="January" type="hidden" value="<%=dataValue.get(11)%>" readonly="readonly" />
@@ -169,7 +183,8 @@
         });
 
         var xBillValues = ["Paid", "Unpaid"];
-        var yBillValues = [55, 45];
+        var yBillValues = [document.getElementById("Paid").value, document.getElementById("Unpaid").value];
+        
         var barColorsBill = [
             "#b91d47",
             "#1e7145"

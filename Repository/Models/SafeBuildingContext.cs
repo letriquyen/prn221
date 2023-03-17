@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -17,16 +16,7 @@ namespace Repository.Models
             : base(options)
         {
         }
-        private string GetConnectionString()
-        {
-            IConfiguration config = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", true, true)
-            .Build();
-            var strConn = config["ConnectionStrings:SafeBuildingDB"];
 
-            return strConn;
-        }
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Building> Buildings { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
@@ -34,6 +24,7 @@ namespace Repository.Models
         public virtual DbSet<Flat> Flats { get; set; }
         public virtual DbSet<FlatFacility> FlatFacilities { get; set; }
         public virtual DbSet<FlatType> FlatTypes { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<RentContract> RentContracts { get; set; }
         public virtual DbSet<Service> Services { get; set; }
 
@@ -42,7 +33,7 @@ namespace Repository.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer(GetConnectionString());
+                optionsBuilder.UseSqlServer("Server=(local);uid=sa;pwd=sa12345;database= SafeBuilding;TrustServerCertificate=True");
             }
         }
 
@@ -288,6 +279,55 @@ namespace Repository.Models
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("status");
+            });
+
+            modelBuilder.Entity<Invoice>(entity =>
+            {
+                entity.ToTable("invoice");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CustomerId)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("customer_id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("date")
+                    .HasColumnName("date");
+
+                entity.Property(e => e.Electricity)
+                    .HasMaxLength(255)
+                    .HasColumnName("electricity");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(255)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Management)
+                    .HasMaxLength(255)
+                    .HasColumnName("management");
+
+                entity.Property(e => e.Parking)
+                    .HasMaxLength(255)
+                    .HasColumnName("parking");
+
+                entity.Property(e => e.Rent)
+                    .HasMaxLength(255)
+                    .HasColumnName("rent");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(255)
+                    .HasColumnName("status");
+
+                entity.Property(e => e.Water)
+                    .HasMaxLength(255)
+                    .HasColumnName("water");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Invoices)
+                    .HasForeignKey(d => d.CustomerId)
+                    .HasConstraintName("FK__invoice__custome__6383C8BA");
             });
 
             modelBuilder.Entity<RentContract>(entity =>

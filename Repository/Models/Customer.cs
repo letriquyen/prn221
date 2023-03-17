@@ -9,6 +9,7 @@ namespace Repository.Models
     {
         public Customer()
         {
+            Invoices = new HashSet<Invoice>();
             RentContracts = new HashSet<RentContract>();
         }
 
@@ -23,6 +24,7 @@ namespace Repository.Models
         public string Phone { get; set; }
         public string Status { get; set; }
 
+        public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<RentContract> RentContracts { get; set; }
     }
 }
