@@ -6,30 +6,30 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
-<form method="get">
-                        <h3>Chart Form</h3>
-                        <div class="form-group">
-                            <label>Bill date:</label>
-                            <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="2010-01" placeholder="Enter bill date">
-                            <span asp-validation-for="@Model.billDate" class="text-danger"></span>
-                        </div>
+<form method="post">
+    <h3>Chart Form</h3>
+    <div class="form-group">
+        <label>Bill date:</label>
+        <input asp-for="@Model.billDate" type="month" min="1999-01" max="2050-12" value="2010-01" placeholder="Enter bill date">
+        <span asp-validation-for="@Model.billDate" class="text-danger"></span>
+    </div>
 
-                        <div class="form-group">
-                            <label>Flats of building</label>
-                            <select>
-                                @foreach (var item in Model.buildings)
-        {
-                                <option asp-for="@item.Id">@item.Name</option>
-        }
-                            </select>
-                        </div>
-                         <div class="form-group">
-                             <label>Contract Year</label>
-                            <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" placeholder="Enter year">
-                            <span asp-validation-for="@Model.contractYear" class="text-danger"></span>
-                        </div> 
-                        <button class="submit" value="Chart">OK</button>
-                    </form>
+    <div class="form-group">
+        <label>Flats of building</label>
+        <select asp-for="@Model.buildingId">
+            @foreach (var item in Model.buildings)
+            {
+                <option asp-for="@Model.buildingId" value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Contract Year</label>
+        <input asp-for="@Model.contractYear" type="number" min="1999" max="2050" step="1" placeholder="Enter year">
+        <span asp-validation-for="@Model.contractYear" class="text-danger"></span>
+    </div>
+    <button class="submit" value="Chart">OK</button>
+</form>
 
 <form method="post">
 
@@ -47,7 +47,7 @@
     <input id="October" asp-for="@Model.contractStatistic[10]" type="hidden">
     <input id="November" asp-for="@Model.contractStatistic[11]" type="hidden">
     <input id="December" asp-for="@Model.contractStatistic[12]" type="hidden">
-    
+
     <input id="Available" asp-for="@Model.flatStatistic["AVAILABLE"]" type="hidden">
     <input id="Pending" asp-for="@Model.flatStatistic["PENDING"]" type="hidden">
     <input id="Unavailable" asp-for="@Model.flatStatistic["UNAVAILABLE"]" type="hidden">
@@ -55,19 +55,19 @@
     <input asp-for="@Model.billStatistic["UNPAID"]" type="hidden">
     <input asp-for="@Model.billStatistic["PAID"]" type="hidden">
 
-    <input style="width:100%" id="TotalContract" type="hidden"  value="<%=dataValue.get(10)%>" readonly="readonly"/>
-            <input style="width:100%" id="January" type="hidden"  value="<%=dataValue.get(11)%>" readonly="readonly"/>
-            <input style="width:100%" id="Febuary" type="hidden"  value="<%=dataValue.get(12)%>" readonly="readonly"/>
-            <input style="width:100%" id="March" type="hidden"  value="<%=dataValue.get(13)%>" readonly="readonly"/>
-            <input style="width:100%" id="April" type="hidden"  value="<%=dataValue.get(14)%>" readonly="readonly"/>
-            <input style="width:100%" id="May" type="hidden"  value="<%=dataValue.get(15)%>" readonly="readonly"/>
-            <input style="width:100%" id="June" type="hidden"  value="<%=dataValue.get(16)%>" readonly="readonly"/>
-            <input style="width:100%" id="July" type="hidden"  value="<%=dataValue.get(17)%>" readonly="readonly"/>
-            <input style="width:100%" id="August" type="hidden"  value="<%=dataValue.get(18)%>" readonly="readonly"/>
-            <input style="width:100%" id="September" type="hidden"  value="<%=dataValue.get(19)%>" readonly="readonly"/>
-            <input style="width:100%" id="October" type="hidden"  value="<%=dataValue.get(20)%>" readonly="readonly"/>
-            <input style="width:100%" id="November" type="hidden"  value="<%=dataValue.get(21)%>" readonly="readonly"/>
-            <input style="width:100%" id="December" type="hidden"  value="<%=dataValue.get(22)%>" readonly="readonly"/>
+    <input style="width:100%" id="TotalContract" type="hidden" value="<%=dataValue.get(10)%>" readonly="readonly" />
+    <input style="width:100%" id="January" type="hidden" value="<%=dataValue.get(11)%>" readonly="readonly" />
+    <input style="width:100%" id="Febuary" type="hidden" value="<%=dataValue.get(12)%>" readonly="readonly" />
+    <input style="width:100%" id="March" type="hidden" value="<%=dataValue.get(13)%>" readonly="readonly" />
+    <input style="width:100%" id="April" type="hidden" value="<%=dataValue.get(14)%>" readonly="readonly" />
+    <input style="width:100%" id="May" type="hidden" value="<%=dataValue.get(15)%>" readonly="readonly" />
+    <input style="width:100%" id="June" type="hidden" value="<%=dataValue.get(16)%>" readonly="readonly" />
+    <input style="width:100%" id="July" type="hidden" value="<%=dataValue.get(17)%>" readonly="readonly" />
+    <input style="width:100%" id="August" type="hidden" value="<%=dataValue.get(18)%>" readonly="readonly" />
+    <input style="width:100%" id="September" type="hidden" value="<%=dataValue.get(19)%>" readonly="readonly" />
+    <input style="width:100%" id="October" type="hidden" value="<%=dataValue.get(20)%>" readonly="readonly" />
+    <input style="width:100%" id="November" type="hidden" value="<%=dataValue.get(21)%>" readonly="readonly" />
+    <input style="width:100%" id="December" type="hidden" value="<%=dataValue.get(22)%>" readonly="readonly" />
 
 </form>
 @*<table class="table table-hover">
@@ -144,7 +144,7 @@
         //});
 
         var xFlatValues = ["Available", "Pending", "Unavailable"];
-        var yFlatValues = [document.getElementById("Available").value,document.getElementById("Pending").value,document.getElementById("Unavailable").value];
+        var yFlatValues = [document.getElementById("Available").value, document.getElementById("Pending").value, document.getElementById("Unavailable").value];
         var barColorsFlat = [
             "#b91d47",
             "#00aba9",
@@ -169,7 +169,7 @@
         });
 
         var xBillValues = ["Paid", "Unpaid"];
-        var yBillValues = [55,45];
+        var yBillValues = [55, 45];
         var barColorsBill = [
             "#b91d47",
             "#1e7145"
@@ -194,11 +194,11 @@
 
         var xValues2 = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var yValues2 = [document.getElementById("January").value, document.getElementById("Febuary").value,
-                document.getElementById("March").value, document.getElementById("April").value, 
-                document.getElementById("May").value, document.getElementById("June").value,
-                document.getElementById("July").value, document.getElementById("August").value,
-                document.getElementById("September").value, document.getElementById("October").value, 
-            document.getElementById("November").value, document.getElementById("December").value];
+        document.getElementById("March").value, document.getElementById("April").value,
+        document.getElementById("May").value, document.getElementById("June").value,
+        document.getElementById("July").value, document.getElementById("August").value,
+        document.getElementById("September").value, document.getElementById("October").value,
+        document.getElementById("November").value, document.getElementById("December").value];
         var max = Number(document.getElementById("totalContracts").value);
         new Chart("contractChart", {
             type: "line",
