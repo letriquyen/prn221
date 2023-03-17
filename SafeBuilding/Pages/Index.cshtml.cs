@@ -42,7 +42,7 @@ namespace SafeBuilding.Pages
             {
                 contracts.Add(i, 0);
             }
-            // !!!IMPORTANT: update expiryDate -> startDate
+            
             List<RentContract> rentContracts = _context.RentContracts
                 .Where(rc => rc.StartDate.Value.Year == DateTime.Now.Year).ToList();
             foreach (RentContract rentContract in rentContracts)
@@ -84,7 +84,14 @@ namespace SafeBuilding.Pages
                 { "UNAVAILABLE", countUnavailable }
             };
             contractStatistic = contracts.Values.ToList();
-
+            billDate = DateTime.Now;
+            billStatistic = dashboard.getInvoiceStatistics(billDate.Month, billDate.Year);
+            string connectStr = "-";
+            if (billDate.Month < 10)
+            {
+                connectStr += "0";
+            }
+            invoiceDate = billDate.Year + connectStr + billDate.Month;
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()
@@ -143,7 +150,12 @@ namespace SafeBuilding.Pages
             };
             contractStatistic = contracts.Values.ToList();
             billStatistic = dashboard.getInvoiceStatistics(billDate.Month, billDate.Year);
-            invoiceDate = billDate.Year + "-" + billDate.Month;
+            string connectStr = "-";
+            if (billDate.Month < 10)
+            {
+                connectStr += "0";
+            }
+            invoiceDate = billDate.Year + connectStr + billDate.Month;
             return Page();
         }
     }
